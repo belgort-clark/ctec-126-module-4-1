@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Demo 1</title>
+    </head>
+
+    <body>
+        <div data-errors></div>
+        <form>
+            <label for="firstname">First Name</label><br>
+            <input type="text" id="firstname" name="firstname"><br>
+            <label for="lastname">Last Name</label><br>
+            <input type="text" id="lastname" name="lastname"><br>
+            <label for="password">Enter a Password</label><br>
+            <input type="password" name="password" id="password"><br>
+            <!-- <input type="submit" value="Submit"> -->
+            <button type="submit">Save my data</button>
+        </form>
+        <script>
+            const form = document.querySelector('form')
+            const first = document.querySelector('#firstname')
+            const last = document.querySelector('#lastname')
+            const password = document.querySelector('#password')
+            const errors = []
+            const errorDisplay = document.querySelector('[data-errors]')
+
+            form.addEventListener('submit', (e) => {
+                if (first.value.trim() == '') {
+                    errors.push('Please fill in the First Name field')
+                }
+
+                if (last.value.trim() == '') {
+                    errors.push('Please fill in the Last Name field')
+                }
+
+                if (password.value.trim() == '' || password.value.length < 8) {
+                    errors.push('Please fill in the Password field')
+                }
+
+                if (errors.length > 0) {
+                    let output = '<ul>'
+                    for (let index = 0; index < errors.length; index++) {
+                        output += `<li>${errors[index]}</li>`
+                    }
+                    output += '</ul>'
+                    errorDisplay.innerHTML = ''
+                    errorDisplay.innerHTML = output
+                    errors.length = 0
+                    e.preventDefault()
+                }
+            })
+        </script>
+    </body>
+
+</html>
