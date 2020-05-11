@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Demo 3 - Radio Buttons</title>
+    </head>
+
+    <body>
+        <form name="burgerorder" data-order-form>
+            <div>Please select the type of burger you want</div>
+            <input type="radio" name="burgertype" value="cheese" id="cheese">
+            <label for="cheese">Cheese</label>
+            <input type="radio" name="burgertype" value="double" id="double">
+            <label for="double">Double</label>
+            <input type="radio" name="burgertype" value="doublecheese" id="doublecheese">
+            <label for="doublecheese">Double Cheese</label><br><br>
+            <input type="submit" value="I want my burger!">
+        </form>
+
+        <script>
+            // get handle to the form
+            // const form = document.querySelector('[name="burgerorder"]')
+            const form = document.querySelector('[data-order-form   ]')
+            // get handle to all radio buttons
+            const burger = document.querySelectorAll('[name="burgertype"]')
+
+            // create an event listener that waits for form submission
+            form.addEventListener('submit', (e) => {
+                // use flag to determine whether or not value was checked
+                let flag = false
+                // iterate through array to see if any item was checked
+                burger.forEach(item => {
+                    if (item.checked) {
+                        alert(item.value)
+                        flag = true
+                    }
+                })
+
+                // if nothing checked, display message
+                if (flag == false) {
+                    alert('Pick a burger please')
+                }
+            })
+
+        </script>
+    </body>
+
+</html>

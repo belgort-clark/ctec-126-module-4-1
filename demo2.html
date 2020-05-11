@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Demo 2 - Selects</title>
+    </head>
+
+    <body>
+        <form>
+            <label for="state">Please select a State</label><br>
+            <select name="state" id="state">
+                <option value="">--Select a State--</option>
+                <option value="or">Oregon</option>
+                <option value="wa">Washington</option>
+            </select><br><br>
+            <input type="submit" value="Submit">
+        </form>
+        <script>
+            const form = document.querySelector('form')
+            const state = document.querySelector('#state')
+
+            form.addEventListener('submit', (e) => {
+                if (state.value == '') {
+                    // alert(`You selected ${state.value}`)
+                    alert('Please select a state')
+                    e.preventDefault()
+                }
+
+            })
+        </script>
+    </body>
+
+</html>
