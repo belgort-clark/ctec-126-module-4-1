@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Checkboxes</title>
+    </head>
+
+    <body>
+        <form>
+            <p>What are your interests?</p>
+            <input type="checkbox" name="interests[]" id="fishing" value="fishing">
+            <label for="fishing">Fishing</label>
+            <input type="checkbox" name="interests[]" id="boating" value="boating">
+            <label for="boating">Boating</label>
+            <input type="checkbox" name="interests[]" id="hunting" value="hunting">
+            <label for="hunting">Hunting</label>
+            <input type="checkbox" name="interests[]" id="drumming" value="drumming">
+            <label for="drumming">Drumming</label>
+            <br><br>
+            <input type="submit" value="Save my interests">
+        </form>
+        <script>
+            const form = document.querySelector('form')
+            const interests = document.querySelectorAll('[name="interests[]"]')
+            // console.log(interests)
+            form.addEventListener('submit', (e) => {
+                e.preventDefault()
+                interests.forEach(item => {
+                    if (item.checked) {
+                        console.log(item.value)
+                    }
+                })
+            })
+        </script>
+    </body>
+
+</html>

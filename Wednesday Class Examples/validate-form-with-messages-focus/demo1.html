@@ -42,7 +42,6 @@
                 if (first.value.trim() == '') {
                     error_first.classList.add('error')
                     firstFieldFocus = first
-                    e.preventDefault()
                 } else {
                     error_first.classList.remove('error')
                 }
@@ -52,7 +51,6 @@
                     if (firstFieldFocus == undefined) {
                         firstFieldFocus = last
                     }
-                    e.preventDefault()
                 } else {
                     error_last.classList.remove('error')
                 }
@@ -62,7 +60,6 @@
                     if (firstFieldFocus == undefined) {
                         firstFieldFocus = ack
                     }
-                    e.preventDefault()
                 } else {
                     error_ack.classList.remove('error')
                 }
@@ -70,10 +67,11 @@
                 firstFieldFocus != undefined ? firstFieldFocus.focus() : null
 
                 if (firstFieldFocus != undefined) {
+                    e.preventDefault()
                     firstFieldFocus.focus()
                 } else {
                     result.innerHTML = '<p>Thanks buddy for the info</p>'
-                    e.preventDefault()
+                    // e.preventDefault()
                 }
 
                 submitBtn.removeAttribute('disabled')

@@ -5,23 +5,60 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>My First Calculator</title>
-        <script src="script.js" defer></script>
+        <style>
+            div {
+                font-size: 5rem;
+                margin-top: 2em;
+            }
+
+        </style>
     </head>
 
     <body>
-        <label for="value1">Value 1: </label>
-        <input type="text" id="value1">
-        <label for="value2">Value 2: </label>
-        <input type="text" id="value2">
-        <label for="operator">Operation</label>
+        <label for="value1">Value 1: </label><br>
+        <input type="text" id="value1"><br><br>
+
+        <label for="value2">Value 2: </label><br>
+        <input type="text" id="value2"><br><br>
+        <label for="operator">Operation</label><br>
         <select id="operator">
             <option value="add">Add</option>
             <option value="subtract">Subtract</option>
             <option value="divide">Divide</option>
             <option value="multiply">Multiply</option>
-        </select>
+        </select><br>
+        <br>
+        <br>
         <button data-calculate>Calculate</button>
         <div data-result></div>
+
+        <script>
+
+            const calc = () => {
+                const value1 = parseFloat(document.querySelector('#value1').value)
+                const value2 = parseFloat(document.querySelector('#value2').value)
+                const operator = document.querySelector('#operator').value
+                const result = document.querySelector('[data-result]')
+                let calculation
+
+                if (operator == 'add') {
+                    calculation = value1 + value2
+                } else if (operator == 'subtract') {
+                    calculation = value1 - value2
+                } else if (operator == 'divide') {
+                    calculation = value1 / value2
+                } else if (operator == 'multiply') {
+                    calculation = value1 * value2
+                }
+
+                result.innerText = calculation
+
+            }
+
+            const calculateBtn = document.querySelector('[data-calculate]')
+
+            calculateBtn.addEventListener('click', calc)
+        </script>
     </body>
 
 </html>
