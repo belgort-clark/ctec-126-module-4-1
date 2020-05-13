@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My First Calculator</title>
+        <script src="script.js" defer></script>
+    </head>
+
+    <body>
+        <label for="value1">Value 1: </label>
+        <input type="text" id="value1">
+        <label for="value2">Value 2: </label>
+        <input type="text" id="value2">
+        <label for="operator">Operation</label>
+        <select id="operator">
+            <option value="add">Add</option>
+            <option value="subtract">Subtract</option>
+            <option value="divide">Divide</option>
+            <option value="multiply">Multiply</option>
+        </select>
+        <button data-calculate>Calculate</button>
+        <div data-result></div>
+    </body>
+
+</html>
