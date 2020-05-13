@@ -6,17 +6,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Validate Form with Focus and Messages</title>
         <style>
-            /* css will go here */
+            [data-field] {
+                display: none;
+            }
+
+            .error {
+                display: inline;
+                color: maroon;
+            }
 
         </style>
     </head>
 
     <body>
+        <div class="result"></div>
         <form action="">
-            <label for="firstname">First Name</label><br>
+            <p>Fields with * are required</p>
+            <label for="firstname">First Name *</label><br>
             <input type="text" id="firstname" name="firstname"> <span data-field data-first>This field is required</span>
             <br><br>
-            <label for="lastname">Last Name</label><br>
+            <label for="lastname">Last Name * </label><br>
             <input type="text" id="lastname" name="lastname"> <span data-field data-last>This field is required</span>
             <br><br>
             <p>Do you acknowledge that this information is accurate?</p>
@@ -25,7 +34,69 @@
             <input type="submit" value="Submit" id="submit">
         </form>
         <script>
-            // JavaScript will go here
+
+            function processForm(e) {
+                let firstFieldFocus = undefined
+                submitBtn.setAttribute('disabled', true)
+
+                if (first.value.trim() == '') {
+                    error_first.classList.add('error')
+                    firstFieldFocus = first
+                    e.preventDefault()
+                } else {
+                    error_first.classList.remove('error')
+                }
+
+                if (last.value.trim() == '') {
+                    error_last.classList.add('error')
+                    if (firstFieldFocus == undefined) {
+                        firstFieldFocus = last
+                    }
+                    e.preventDefault()
+                } else {
+                    error_last.classList.remove('error')
+                }
+
+                if (!ack.checked) {
+                    error_ack.classList.add('error')
+                    if (firstFieldFocus == undefined) {
+                        firstFieldFocus = ack
+                    }
+                    e.preventDefault()
+                } else {
+                    error_ack.classList.remove('error')
+                }
+
+                firstFieldFocus != undefined ? firstFieldFocus.focus() : null
+
+                if (firstFieldFocus != undefined) {
+                    firstFieldFocus.focus()
+                } else {
+                    result.innerHTML = '<p>Thanks buddy for the info</p>'
+                    e.preventDefault()
+                }
+
+                submitBtn.removeAttribute('disabled')
+
+            }
+
+            const result = document.querySelector('.result')
+            const form = document.querySelector('form')
+
+            const first = document.querySelector('#firstname') // this is for the input
+            const error_first = document.querySelector('[data-first]') // this is for the error span
+
+            const last = document.querySelector('#lastname') // this is for the input
+            const error_last = document.querySelector('[data-last]') // this is for the error span
+
+            const ack = document.querySelector('#ack') // this is for the input
+            const error_ack = document.querySelector('[data-ack]') // this is for the error span
+
+            const submitBtn = document.querySelector('#submit')
+
+            form.addEventListener('submit', (e) => {
+                processForm(e)
+            })
         </script>
     </body>
 
